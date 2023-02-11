@@ -1,0 +1,31 @@
+@import '../../variables';
+
+.footer {
+    margin-top: 70px;
+    padding: 30px 0;
+    background-color: $primaryColor;
+    -webkit-box-shadow: 3px -7px 15px 3px rgba(116, 77, 50, 0.52);
+    box-shadow: 3px -7px 15px 3px rgba(116, 77, 50, 0.52);
+
+    &-content {
+        display: flex;
+        justify-content: space-between;
+
+        p {
+            color: $whiteTextColor;
+            line-height: 24px;
+            width: 50%;
+        }
+
+        .made-by {
+            text-align: right;
+        }
+
+        @media screen and (max-width: 540px) {
+           .rights, .made-by {
+                font-size: 14px;
+                text-align: center;
+           }
+        }
+    }
+}
