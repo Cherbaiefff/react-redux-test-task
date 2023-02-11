@@ -1,0 +1,56 @@
+@import '../../../variables';
+
+.found-product-item {
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background-color: $primaryColor;
+    border-bottom: 1px solid $whiteTextColor;
+    border-radius: 10px;
+    position: relative;
+
+    &:hover {
+        background-color: #5c4033;
+    }
+
+    img {
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+
+        @media screen and (max-width: 375px) {
+            width: 45px;
+            height: 45px;
+        }
+    }
+
+    &__info {
+        padding-left: 15px;
+        width: 220px;
+    }
+
+    &__title {
+        color: $secondaryColor;
+        font-weight: bold;
+        width: 22vw;
+    }
+
+    &__price {
+        color: $whiteTextColor;
+        font-size: 12px;
+        margin-top: 4px;
+    }
+
+    &__btn {
+        position: absolute;
+        right: 5%;
+        color: $whiteTextColor;
+        background-color: $secondaryColor;
+        padding: 8px 22px;
+
+        &:hover {
+            background-color: $btnHoverColor;
+        }
+    }
+}
