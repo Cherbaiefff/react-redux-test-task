@@ -1,0 +1,16 @@
+.button {
+  border: 0;
+  outline: none;
+  border-radius: 20px;
+  padding: 5px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  height: fit-content;
+  cursor: pointer;
+  transition: scale 250ms ease;
+
+  &:active {
+    scale: 0.96;
+  }
+}
