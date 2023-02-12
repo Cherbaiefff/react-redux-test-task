@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import Container from '../UI/Container';
+import ModalWrapper from '../UI/ModalWrapper/ModalWrapper';
 import { useDispatch, useSelector } from 'react-redux';
 import { togglePurchaseModal } from '../../store/user-cart';
 
@@ -42,6 +43,7 @@ export default function Header() {
                     )}
                 </div>
             </Container>
+            <ModalWrapper />
         </header>
     );
 }
