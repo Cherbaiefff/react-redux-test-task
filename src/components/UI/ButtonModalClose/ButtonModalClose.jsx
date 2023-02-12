@@ -4,7 +4,7 @@ import styles from './ButtonModalClose.module.scss';
 
 export default function ButtonModalClose({ className, onClick }) {
     return (
-        <div classNameName={styles.wrapper}>
+        <div className={styles.wrapper}>
             <a
                 href="#"
                 className={cn(className, styles['close-button'])}
