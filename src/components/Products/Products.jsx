@@ -1,11 +1,13 @@
 import React, { useMemo } from 'react';
-import CartsWrapper from '../UI/CartsWrapper';
-import Cart from '../UI/Cart';
+import Container from '../UI/Container';
 import Loader from '../UI/Loader';
 import NewProducts from './NewProducts';
 import SearchField from './SearchField';
-import { useGetProductsQuery } from '../../services/products-service';
+import CartsWrapper from '../UI/CartsWrapper';
+import Cart from '../UI/Cart';
 import AnimationWrapper from '../UI/AnimationWrapper';
+
+import { useGetProductsQuery } from '../../services/products-service';
 
 export default function Products() {
     const { data, isLoading } = useGetProductsQuery();
@@ -20,19 +22,21 @@ export default function Products() {
 
     return (
         <main>
-            {isLoading && <Loader />}
-            <NewProducts promoProducts={promoProducts} />
-            <SearchField />
-            <CartsWrapper>
-                {data?.products &&
-                    data.products.map((product, idx) => {
-                        return (
-                            <AnimationWrapper delay={idx} key={product.id}>
-                                <Cart product={product} />
-                            </AnimationWrapper>
-                        );
-                    })}
-            </CartsWrapper>
+            <Container>
+                {isLoading && <Loader />}
+                <NewProducts promoProducts={promoProducts} />
+                <SearchField />
+                <CartsWrapper>
+                    {data?.products &&
+                        data.products.map((product, idx) => {
+                            return (
+                                <AnimationWrapper delay={idx} key={product.id}>
+                                    <Cart product={product} />
+                                </AnimationWrapper>
+                            );
+                        })}
+                </CartsWrapper>
+            </Container>
         </main>
     );
 }
