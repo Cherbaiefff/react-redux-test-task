@@ -1,0 +1,15 @@
+@import '../../../variables';
+
+.products-error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 88px - 116px);
+
+    h2 {
+        text-align: center;
+        padding-top: 32px;
+        font-size: 48px;
+        color: $primaryColor;
+    }
+}

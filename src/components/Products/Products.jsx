@@ -8,9 +8,10 @@ import Cart from '../UI/Cart';
 import AnimationWrapper from '../UI/AnimationWrapper';
 
 import { useGetProductsQuery } from '../../services/products-service';
+import ProductsError from './ProductsError';
 
 export default function Products() {
-    const { data, isLoading } = useGetProductsQuery();
+    const { data, isLoading, isSuccess, isError } = useGetProductsQuery();
 
     const promoProducts = useMemo(() => {
         if (!data?.products) return [];
@@ -20,22 +21,36 @@ export default function Products() {
         return shuffled;
     }, [data]);
 
+    const style = {
+        paddingTop: '24px',
+        fontSize: '40px',
+        textAlign: 'center',
+    };
+
     return (
         <main>
             <Container>
                 {isLoading && <Loader />}
-                <NewProducts promoProducts={promoProducts} />
-                <SearchField />
-                <CartsWrapper>
-                    {data?.products &&
-                        data.products.map((product, idx) => {
-                            return (
-                                <AnimationWrapper delay={idx} key={product.id}>
-                                    <Cart product={product} />
-                                </AnimationWrapper>
-                            );
-                        })}
-                </CartsWrapper>
+                {isError && <ProductsError />}
+                {isSuccess && (
+                    <>
+                        <NewProducts promoProducts={promoProducts} />
+                        <SearchField />
+                        <CartsWrapper>
+                            {data?.products &&
+                                data.products.map((product, idx) => {
+                                    return (
+                                        <AnimationWrapper
+                                            delay={idx}
+                                            key={product.id}
+                                        >
+                                            <Cart product={product} />
+                                        </AnimationWrapper>
+                                    );
+                                })}
+                        </CartsWrapper>
+                    </>
+                )}
             </Container>
         </main>
     );
