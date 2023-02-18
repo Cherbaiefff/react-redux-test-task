@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useLazyGetSpecificProductQuery } from '../../../services/products-service';
 import FoundProductItem from '../FoundProductItem';
 import Popper from '../../UI/Popper';
@@ -7,9 +7,18 @@ import styles from './SearchField.module.scss';
 
 export const SearchField = () => {
     const inputRef = useRef(null);
+    const [inputValue, setInputValue] = useState('');
     const [hiddenProductList, setHiddenProductList] = useState(false);
     const [getSpecificProduct, { data, isLoading }] =
         useLazyGetSpecificProductQuery();
+
+    useEffect(() => {
+        const getProducts = setTimeout(() => {
+            getSpecificProduct(inputValue);
+        }, 700);
+
+        return () => clearInterval(getProducts);
+    }, [inputValue, getSpecificProduct]);
 
     const toggleSearchList = () => {
         setHiddenProductList(!hiddenProductList);
@@ -23,7 +32,7 @@ export const SearchField = () => {
     };
 
     const searchHandler = (e) => {
-        getSpecificProduct(e.target.value);
+        setInputValue(e.target.value);
     };
 
     const focusHandler = (e) => {
